@@ -308,14 +308,14 @@ while True:
             gestionnaire_objets.supprimer_collectes()
             
             # Faire apparaître un nouvel objet aléatoire
-            spawn_room = random.choice(["room2", "room3", "room4"])
+            spawn_room = random.choice(["room1", "room2", "room3", "room4"])
             gestionnaire_objets.spawn_aleatoire(spawn_room)
             
             # S'assurer qu'il y a toujours au moins 3 objets visibles
             visible_items = len([item for item in gestionnaire_objets.items if item.visible])
             if visible_items < 3:
                 for _ in range(3 - visible_items):
-                    spawn_room = random.choice(["room2", "room3", "room4"])
+                    spawn_room = random.choice(["room1", "room2", "room3", "room4"])
                     gestionnaire_objets.spawn_aleatoire(spawn_room)
         
         # limiter le joueur a l'ecran

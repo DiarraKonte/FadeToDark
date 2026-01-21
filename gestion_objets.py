@@ -134,7 +134,7 @@ class Gestion_objets:
                         game_state['stars_collected'] = game_state.get('stars_collected', 0) + 1
                         # Augmenter la vitesse de dégradation tous les 3 étoiles
                         if game_state['stars_collected'] % 3 == 0:
-                            game_state['degradation_speed'] = game_state.get('degradation_speed', 0.0009) * 1.5
+                            game_state['degradation_speed'] = game_state.get('degradation_speed', 0.0008) * 1.3
                     return item
         return None
         
