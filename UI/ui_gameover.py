@@ -1,19 +1,6 @@
 import pygame
 
 def render_gameover(screen, width, height, game_state, mouse_pos):
-    """
-    Rend l'écran game over.
-    
-    Args:
-        screen: Surface pygame pour le rendu
-        width: Largeur de l'écran
-        height: Hauteur de l'écran
-        game_state: Dictionnaire contenant l'état du jeu (score, stars_collected, etc.)
-        mouse_pos: Position de la souris (x, y)
-    
-    Returns:
-        dict: Zones cliquables {'rejouer': Rect, 'menu': Rect}
-    """
     # Fond uni sombre (même que le menu)
     screen.fill((25, 25, 35))
     
@@ -25,7 +12,7 @@ def render_gameover(screen, width, height, game_state, mouse_pos):
     title = font_title.render("GAME OVER", True, (200, 80, 80))
     screen.blit(title, (60, 80))
     
-    # === STATISTIQUES ===
+    # STATISTIQUES
     y_pos = 200
     stats_title = font_stats.render("STATISTIQUES", True, (180, 180, 180))
     screen.blit(stats_title, (60, y_pos))
@@ -38,7 +25,7 @@ def render_gameover(screen, width, height, game_state, mouse_pos):
     stars_text = font_option.render(f"Étoiles: {game_state.get('stars_collected', 0)}", True, (150, 150, 150))
     screen.blit(stars_text, (60, y_pos + 110))
     
-    # === OPTIONS ===
+    # OPTIONS
     mouse_x, mouse_y = mouse_pos
     y_pos = 480
     
@@ -55,5 +42,3 @@ def render_gameover(screen, width, height, game_state, mouse_pos):
     menu_color = (220, 220, 220) if menu_hover else (150, 150, 150)
     menu_text = font_option.render("MENU", True, menu_color)
     screen.blit(menu_text, (400, y_pos))
-    
-    return {'rejouer': rejouer_rect, 'menu': menu_rect}

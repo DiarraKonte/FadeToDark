@@ -12,7 +12,7 @@ HELP = "help"
 # constante du gameplay
 VITESSE_JOUEUR = 4
 DEGRADATION_SPEED = 0.0004
-MAX_RADIUS = 500
+MAX_RADIUS = 600  # rayon max de la zone visible (en pixels)
 
 # constante des couleur
 WHITE = (255, 255, 255)

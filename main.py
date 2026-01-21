@@ -102,15 +102,9 @@ rooms = {
 salle_actuellle = "room1"
 
 
-vitesse = 4
-
 def limite(v, minimum, maximum):
     return max(minimum, min(v, maximum))
 
-# ========== SYSTEME DE DEGRADATION ==========
-degradation = 0  # 0 = pas de degradation, 1 t'es mort
-degradation_speed = 0.0008  # Vitesse d'augmentation par frame 
-max_radius = 500  # rayon max de la zone visible (en pixels)
 
 # ========== SYSTEME D'OBJETS ==========
 gestionnaire_objets = Gestion_objets(SCALE)
@@ -118,10 +112,6 @@ gestionnaire_objets.spawn_aleatoire("room1")
 gestionnaire_objets.spawn_aleatoire("room2")
 gestionnaire_objets.spawn_aleatoire("room3")
 gestionnaire_objets.spawn_aleatoire("room4")
-
-# ========== SYSTEME DE SCORE ==========
-score = 0
-items_collected = 0
 
 # ========== ETAT DU JEU ==========
 game_state = {
@@ -261,14 +251,14 @@ while True:
                     game_state_mode = MENU
                     reset_game()
 
-    # ========== AFFICHAGE DU MENU ==========
+    # AFFICHAGE DU MENU 
     if game_state_mode == MENU:
         render_menu(screen, width, height, pygame.mouse.get_pos())
         pygame.display.update()
         clock.tick(60)
         continue
 
-    # ========== AFFICHAGE AIDE ==========
+    # AFFICHAGE AIDE 
     if game_state_mode == HELP:
         render_aide(screen, width, height, pygame.mouse.get_pos())
         pygame.display.update()
@@ -300,7 +290,7 @@ while True:
                 salle_actuellle = door["next"]  # changer de nom de room
                 player_x, player_y = door["spawn"] #  y envoyer le joueur
         
-        # ========== COLLISION AVEC LES OBJETS ==========
+        # COLLISION AVEC LES OBJETS 
         collected_item = gestionnaire_objets.verifier_collision(player_rect, salle_actuellle, game_state)
         if collected_item:
             
@@ -332,7 +322,7 @@ while True:
                 game_state_mode = GAME_OVER  # Passer en mode game over
         
         # Calculer le rayon de vision (diminue avec la degradation)
-        current_radius = max_radius * (1 - game_state['degradation'])
+        current_radius = MAX_RADIUS * (1 - game_state['degradation'])
         
         # Mettre à jour les animations des objets
         gestionnaire_objets.update()
@@ -342,7 +332,7 @@ while True:
         # afficher l'image de la room actuelle
         screen.blit(current_room_data["image"], (0, 0))
         
-        # ========== DESSINER LES OBJETS ==========
+        # DESSINER LES OBJETS 
         gestionnaire_objets.draw(screen, salle_actuellle)
         
         screen.blit(player_img, (player_x, player_y)) # dessine le joueur
@@ -357,7 +347,7 @@ while True:
         vignette_surface = surface_degradation(player_center_x, player_center_y, current_radius, width, height)
         screen.blit(vignette_surface, (0, 0))
         
-        # ========== AFFICHER LE HUD (SCORE, STATS) ==========
+        # AFFICHER LE HUD (SCORE, STATS) 
         font_large = pygame.font.Font(None, 48)
         font_small = pygame.font.Font(None, 32)
         
@@ -392,11 +382,9 @@ while True:
         
         pygame.display.update()
 
-    # ========== ÉCRAN GAME OVER ==========
+    # ÉCRAN GAME OVER 
     if game_state_mode == GAME_OVER:
         render_gameover(screen, width, height, game_state, pygame.mouse.get_pos())
         pygame.display.update()
         clock.tick(60)
         continue
-    
-    pygame.display.update()

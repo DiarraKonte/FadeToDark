@@ -2,18 +2,6 @@ import pygame
 import math
 
 def render_aide(screen, width, height, mouse_pos):
-    """
-    Rend l'écran d'aide.
-    
-    Args:
-        screen: Surface pygame pour le rendu
-        width: Largeur de l'écran
-        height: Hauteur de l'écran
-        mouse_pos: Position de la souris (x, y)
-    
-    Returns:
-        pygame.Rect: Zone cliquable du bouton retour
-    """
     # Fond uni sombre (même que le menu)
     screen.fill((25, 25, 35))
     
@@ -26,15 +14,17 @@ def render_aide(screen, width, height, mouse_pos):
     title = font_title.render("AIDE", True, (200, 200, 200))
     screen.blit(title, (60, 50))
     
-    # === SECTION OBJECTIF ===
+    # SECTION OBJECTIF 
     y_pos = 140
     objectif_title = font_section.render("OBJECTIF", True, (180, 180, 180))
     screen.blit(objectif_title, (60, y_pos))
     
-    objectif_text = font_text.render("Survivez le plus longtemps possible a la degradation", True, (150, 150, 150))
+    objectif_text = font_text.render("Survis le plus longtemps possible a la degradation", True, (150, 150, 150))
     screen.blit(objectif_text, (60, y_pos + 50))
+    objectif_text = font_text.render("Plus tu avance plus la degradation est rapide", True, (150, 150, 150))
+    screen.blit(objectif_text, (60, y_pos + 80))
     
-    # === SECTION OBJETS ===
+    # SECTION OBJETS 
     y_pos = 260
     objets_title = font_section.render("OBJETS", True, (180, 180, 180))
     screen.blit(objets_title, (60, y_pos))
@@ -56,7 +46,7 @@ def render_aide(screen, width, height, mouse_pos):
     etoile_text = font_text.render("Les etoiles donnent des points : +100 par etoile", True, (150, 150, 150))
     screen.blit(etoile_text, (130, y_pos + 110))
     
-    # === SECTION CONTRÔLES ===
+    # SECTION CONTRÔLES 
     y_pos = 450
     controles_title = font_section.render("CONTRÔLES", True, (180, 180, 180))
     screen.blit(controles_title, (60, y_pos))
@@ -80,5 +70,3 @@ def render_aide(screen, width, height, mouse_pos):
         retour_text = font_small.render("< RETOUR", True, (220, 220, 220))
     
     screen.blit(retour_text, retour_rect)
-    
-    return retour_rect

@@ -75,16 +75,26 @@ class Gestion_objets:
     def __init__(self, scale):
         self.items = []
         self.scale = scale
-        self.spawn_positions = {
-            "room1": [(250, 250), (500, 400), (350, 200), (180, 350)],
-            "room2": [(150, 200), (600, 500), (400, 350), (200, 400)],
-            "room3": [(300, 300), (450, 200), (250, 450), (500, 300)],
-            "room4": [(400, 400), (300, 300), (500, 300), (200, 200)]
+        
+        # Positions de spawn pour les boules rouges
+        self.spawn_positions_red_ball = {
+            "room1": [(250, 250), (500, 400)],
+            "room2": [(150, 200), (600, 500)],
+            "room3": [(300, 300), (450, 200)],
+            "room4": [(400, 400), (300, 300)]
+        }
+        
+        # Positions de spawn pour les étoiles (différentes des boules rouges)
+        self.spawn_positions_star = {
+            "room1": [(350, 200), (180, 350)],
+            "room2": [(400, 350), (200, 400)],
+            "room3": [(250, 450), (500, 300)],
+            "room4": [(500, 300), (200, 200)]
         }
         
     def spawn_balle_rouge(self, room):
         """Fait apparaître une boule rouge"""
-        pos = random.choice(self.spawn_positions.get(room, [(400, 400)]))
+        pos = random.choice(self.spawn_positions_red_ball.get(room, [(400, 400)]))
         ball = Balle_rouge(pos[0], pos[1], self.scale)
         ball.room = room
         self.items.append(ball)
@@ -92,7 +102,7 @@ class Gestion_objets:
 
     def spawn_etoile(self, room):
         """Fait apparaître une étoile"""
-        pos = random.choice(self.spawn_positions.get(room, [(400, 400)]))
+        pos = random.choice(self.spawn_positions_star.get(room, [(300, 300)]))
         star = Etoile(pos[0], pos[1], self.scale)
         star.room = room
         self.items.append(star)

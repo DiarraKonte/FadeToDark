@@ -71,9 +71,8 @@ DOOR_H_H = 20
 draw_door(pixels, width - DOOR_W_V, (height - DOOR_H_V)//2, DOOR_W_V, DOOR_H_V)
 draw_door(pixels, (width - DOOR_W_H)//2, height - DOOR_H_H, DOOR_W_H, DOOR_H_H)
 
-# ---------------------------
-# DECOS SIMPLES (à ajouter)
-# ---------------------------
+# DECOS SIMPLES (il sont juste visuel)
+
 
 def draw_outline_rect(pixels, x1, y1, w, h, color):
     # contour rectangle

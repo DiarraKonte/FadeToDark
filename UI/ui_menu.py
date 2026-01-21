@@ -1,18 +1,7 @@
 import pygame
 
 def render_menu(screen, width, height, mouse_pos):
-    """
-    Rend le menu principal.
-    
-    Args:
-        screen: Surface pygame pour le rendu
-        width: Largeur de l'écran
-        height: Hauteur de l'écran
-        mouse_pos: Position de la souris (x, y)
-    
-    Returns:
-        dict: Zones cliquables {'jouer': Rect, 'aide': Rect}
-    """
+
     # Fond uni sombre
     screen.fill((25, 25, 35))
     
@@ -23,8 +12,7 @@ def render_menu(screen, width, height, mouse_pos):
     
     mouse_x, mouse_y = mouse_pos
     
-    # === OPTIONS À GAUCHE ===
-    # JOUER
+    # OPTIONS À GAUCHE
     jouer_rect = pygame.Rect(80, height // 2 - 60, 200, 50)
     jouer_hover = jouer_rect.collidepoint(mouse_x, mouse_y)
     jouer_color = (220, 220, 220) if jouer_hover else (150, 150, 150)
@@ -38,8 +26,8 @@ def render_menu(screen, width, height, mouse_pos):
     aide_text = font_option.render("AIDE", True, aide_color)
     screen.blit(aide_text, (80, height // 2 + 20))
     
-    # === TITRE AU CENTRE-DROIT ===
-    title = font_title.render("PIXEL SURVIVOR", True, (200, 200, 200))
+    # TITRE AU CENTRE-DROIT
+    title = font_title.render("FADE TO DARK", True, (200, 200, 200))
     title_rect = title.get_rect(center=(width - 280, height // 2))
     screen.blit(title, title_rect)
     
